@@ -1,41 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Challenge - DOM</title>
-  </head>
-  <body>
-    <div id="app">
-      <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Challenge - DOM</title>
+  <style>
+    body {
+      background-color: #8f82cf;
+      text-align: -webkit-center;
+      margin-top: 5%;
+    }
+
+    #app {
+      background-color: #ecf1f4;
+      width: 25%;
+      min-height: 300px;
+      height: auto;
+      border-radius: 15px;
+      padding: 5px 10px 10px 10px;
+    }
+
+    #todo-title {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    #todo-title .title {
+      font-size: 20px;
+      text-align: -webkit-center;
+    }
+
+    #todo-title .title p {
+      width: 120px;
+      background-color: #7bf5cc;
+    }
+
+    #todo-subtitle {
+      font-size: 16px;
+      padding-bottom: 10px;
+    }
+
+    #input {
+      text-align: center;
+    }
+
+    #todo-input {
+      height: 30px;
+      width: 70%;
+    }
+
+    #todo-output {
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+    <header id="todo-title">
+      <div class="title">
+        <p>
+          <strong>To-Do List</strong>
+        </p>
+      </div>
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+      <sub id="todo-subtitle">~ Today I need to ~</sub>
+    </header>
 
-      <!-- Section: input -->
+    <!-- Section: input -->
+    <section id="input">
       <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
+      <input type="text" name="todo-input" id="todo-input">
       <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+      <button id="todo-submit" type="submit">Submit</button>
+    </section>
 
-      <!-- Section output -->
+    <!-- Section output -->
+    <section id="output">
       <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
-    </div>
+      <ul id="todo-output">
 
-    <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
-    <script>
-      // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
+      </ul>
+    </section>
+  </div>
 
-      // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
-      // Fungsi yang digunakan untuk menambahkan tulisan
-      // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+  <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
+  <script>
+    // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
+    let button = document.querySelector('#todo-submit')
+    let input = document.querySelector('#todo-input');
+    let output = document.querySelector('#todo-output');
 
-      // TODO: register event onclick / addEventListener untuk button
-      // akan menjalankan fungsi fnClickHandler
-      
-      // TODO: register event onkeypress / addEventListener untuk input
-      // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
-    </script>
-  </body>
+    // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
+    // Fungsi yang digunakan untuk menambahkan tulisan
+    // Jangan ubah cara deklarasi fungsinya, cukup isi saja
+    function fnClickHandler(item) {
+      let li = document.createElement('li');
+      li.textContent = item;
+      return li;
+    }
+
+    // TODO: register event onclick / addEventListener untuk button
+    // akan menjalankan fungsi fnClickHandler
+    button.addEventListener("click", (e) => {
+      output.append(fnClickHandler(input.value));
+    });
+
+    // TODO: register event onkeypress / addEventListener untuk input
+    // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+    input.addEventListener("keyup", (e) => {
+      if (event.key == 'Enter') {
+        output.append(fnClickHandler(input.value));
+        input.value = '';
+      }
+    });
+  </script>
+</body>
+
 </html>
