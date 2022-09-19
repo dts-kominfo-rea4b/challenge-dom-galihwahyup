@@ -107,6 +107,7 @@
     // akan menjalankan fungsi fnClickHandler
     button.addEventListener("click", (e) => {
       output.append(fnClickHandler(input.value));
+      input.value = '';
     });
 
     // TODO: register event onkeypress / addEventListener untuk input
